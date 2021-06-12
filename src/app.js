@@ -1,5 +1,4 @@
-//Load HTTP module
-const port = 3000;
+const port = 8080;
 const express = require('express');
 const app = express();
 app.use(express.json());
@@ -24,10 +23,22 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true }, (err, client
 				res.send(err);
 			});
 	});
+
+	app.get('/contacts', (req, res) => {
+		contactsCollection
+			.find()
+			.toArray()
+			.then(results => {
+				res.send(results);
+			})
+			.catch(err => {
+				res.send(err);
+			});
+	});
 });
 
 app.listen(port, () => {
 	console.log('=======================================');
-	console.log('listening on 3000');
+	console.log(`listening on ${port}`);
 	console.log('=======================================');
 });
