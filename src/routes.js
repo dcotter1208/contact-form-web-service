@@ -2,6 +2,10 @@ const express = require('express');
 const Contact = require('./models/Contact');
 const router = express.Router();
 
+router.get('/welcome', async (_, res) => {
+	res.send({ message: 'app is running...' });
+});
+
 router.post('/new-contact', async (req, res) => {
 	const newContact = await Contact({
 		firstName: req.body.firstName,

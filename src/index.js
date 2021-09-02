@@ -2,8 +2,8 @@ const port = 8080;
 const express = require('express');
 const mongoose = require('mongoose');
 const routes = require('./routes');
-const mongoPassword = '';
-const mongoDatabase = '';
+const mongoPassword = process.env.MONGO_PASSWORD;
+const mongoDatabase = 'contacts';
 const connectionString = `mongodb+srv://dcotter:${mongoPassword}@cluster0.93f0r.mongodb.net/${mongoDatabase}?retryWrites=true&w=majority`;
 
 mongoose.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
