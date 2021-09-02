@@ -10,11 +10,11 @@ router.post('/new-contact', async (req, res) => {
 		email: req.body.email
 	});
 	try {
-		await newContact.save();
-		res.send(posts);
-	} catch {
+		response = await newContact.save();
+		res.send(response);
+	} catch (error) {
 		res.status(500);
-		res.send({ error: 'Failed to save new contact.' });
+		res.send({ error: `Failed to save new contact. Reason: ${error}` });
 	}
 });
 
